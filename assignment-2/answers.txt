@@ -1,0 +1,3 @@
+Home link: it opened the homepage (index.html) in the same browser tab. The page I started from (contact.html) was replaced, and I can return to it with the browser's Back button.
+
+Learning resource link (target="_blank"): it opened the MDN HTML guide in a new browser tab. The page I started from (contact.html) stayed open in its original tab without changing.

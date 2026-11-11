@@ -1,0 +1,43 @@
+Assignment 3 - Answers
+
+=== 2. FAQ keyboard test ===
+I opened pages/courses.html and pressed Tab until the focus reached the second question
+("ماذا أحضر معي في الحصة الأولى؟"). A focus outline appeared around the question.
+When I pressed Enter, the answer appeared under the question.
+When I pressed Enter again, the answer was hidden and the question closed.
+
+=== 3. Video code ===
+Corrected line:
+<video src="../media/intro.mp4" controls preload="metadata"></video>
+
+- Starting point of the relative path:
+  The path starts from the folder of the file that contains the code, which is the pages folder
+  (pages/courses.html). The media folder is next to index.html, not inside pages, so the path
+  must go up one folder first: src="../media/intro.mp4". The original "media/intro.mp4" makes the
+  browser look for pages/media/intro.mp4, which does not exist.
+
+- muted="false":
+  muted is a boolean attribute. If it is written at all, the video is muted, whatever value it has.
+  So muted="false" still mutes the sound. I removed the muted attribute completely so the visitor
+  hears the sound when pressing play.
+
+- preload value:
+  preload="metadata" - the browser downloads only the metadata (such as duration and size)
+  before playback, not the whole video.
+
+=== 4. Testing the extracted copy ===
+I zipped the assignment-3 folder, extracted it to a new location, and opened index.html from the
+extracted copy.
+
+1. "اعرف متطلبات الكورس" on the homepage opened pages/courses.html and the address ended with
+   #html-requirements. The page jumped to the requirements heading of the first course (HTML Basics).
+2. In the course guide I found the level and duration of both courses
+   (HTML Basics: مبتدئ, 4 أسابيع - CSS Basics: مبتدئ إلى متوسط, 5 أسابيع).
+   The cover image and its caption appeared under the first course.
+3. "تواصل معنا" in the nav opened contact.html, and "الرئيسية" in the nav took me back to index.html.
+4. I went back to the FAQ, reached the second question with Tab, opened it with Enter,
+   and closed it with Enter again.
+
+Fixes: In Assignment 3, I moved the requirements heading into the first course's <article>
+and changed it from <h2> to <h3>. I kept the same id (html-requirements), so the homepage link
+did not need any change. All steps worked in the test, and no paths needed repair.

@@ -15,3 +15,12 @@ The link is written in pages/schedule.html, so the browser starts looking from t
 index.html is not inside pages; it is one level up, in the session-5 folder.
 So "../" is needed to go up one folder from pages to session-5, and then index.html is found there.
 If I wrote href="index.html", the browser would look for pages/index.html, which does not exist.
+
+Session 5 - Question 2 - Answers
+
+=== Reading the cell that contains 3 ===
+The cell with the number 3 belongs to the HTML Content course on Tuesday, and it measures the number of hours of that session (3 hours).
+
+=== Checking the total ===
+Sunday (HTML Content) 2 + Tuesday (HTML Content) 3 + Thursday (HTML Forms) 4 = 9 hours.
+The total in the <tfoot> is 9, so it matches the session data.

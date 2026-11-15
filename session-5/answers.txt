@@ -1,0 +1,17 @@
+Session 5 - Question 1 - Answers
+
+=== Test the navigation ===
+1. On the homepage I clicked "انتقل إلى كورسات هذا الشهر" (href="#this-month").
+   The page jumped to the section with id="this-month" and the address ended with #this-month.
+2. I opened the schedule page from "المواعيد" in the nav (href="pages/schedule.html").
+3. On the schedule page I clicked "الرئيسية" in the nav and it took me back to index.html.
+
+=== href used for the return trip ===
+href="../index.html"
+
+=== Why the path starts from the pages folder ===
+A relative path starts from the folder of the file that contains the link.
+The link is written in pages/schedule.html, so the browser starts looking from the pages folder.
+index.html is not inside pages; it is one level up, in the session-5 folder.
+So "../" is needed to go up one folder from pages to session-5, and then index.html is found there.
+If I wrote href="index.html", the browser would look for pages/index.html, which does not exist.

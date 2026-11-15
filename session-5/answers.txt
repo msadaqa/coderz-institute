@@ -24,3 +24,19 @@ The cell with the number 3 belongs to the HTML Content course on Tuesday, and it
 === Checking the total ===
 Sunday (HTML Content) 2 + Tuesday (HTML Content) 3 + Thursday (HTML Forms) 4 = 9 hours.
 The total in the <tfoot> is 9, so it matches the session data.
+
+Session 5 - Question 3 - Answers
+
+=== Clicking the full-name label ===
+I opened pages/enquiry.html in the browser and clicked the label text "الاسم الكامل".
+The cursor moved into the full-name field, because the label's for="full-name" matches the field's id="full-name".
+Then I typed a sample name (سامي خالد) and changed the seat count from 1 to 3.
+
+=== placeholder vs value ===
+The name example "مثال: أحمد محمد علي" was a placeholder: it only showed as a hint while the field was empty,
+and it disappeared as soon as I started typing. It is not a real value, so it is never sent with the form.
+The seat count 1 was set with value: it is a real value written inside the field. I could edit it,
+and if I did not change it, 1 would be sent with the form.
+
+=== Which seat count would the form submit now? ===
+The form would submit 3 (seats=3), because I changed the value from 1 to 3 and the form sends the current value of the field.

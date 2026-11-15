@@ -12,5 +12,50 @@
   </nav>
 
   <h1>الاستفسار عن الكورسات</h1>
+
+  <h2>استفسر عن كورس</h2>
+
+  <form>
+    <p>
+      <label for="full-name">الاسم الكامل</label>
+      <input type="text" id="full-name" name="full_name" placeholder="مثال: أحمد محمد علي" autocomplete="name">
+    </p>
+
+    <p>
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" id="email" name="email">
+    </p>
+
+    <p>
+      <label for="phone">رقم الهاتف</label>
+      <input type="tel" id="phone" name="phone">
+    </p>
+
+    <p>
+      <label for="course">الكورس</label>
+      <select id="course" name="course">
+        <option value="">اختر كورساً</option>
+        <option value="content">HTML Content</option>
+        <option value="forms">HTML Forms</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="seats">عدد المقاعد</label>
+      <input type="number" id="seats" name="seats" value="1">
+    </p>
+
+    <p>
+      <label for="preferred-date">التاريخ المفضّل</label>
+      <input type="date" id="preferred-date" name="preferred_date">
+    </p>
+
+    <p>
+      <label for="message">رسالة الاستفسار</label>
+      <textarea id="message" name="message"></textarea>
+    </p>
+
+    <button type="submit">أرسل الاستفسار</button>
+  </form>
 </body>
 </html>

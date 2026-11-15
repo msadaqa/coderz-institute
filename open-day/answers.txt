@@ -1,0 +1,17 @@
+Question 4 - Repair the open day visitor table - Answers
+
+=== Inspecting the Evening row (before the repair) ===
+Lab A had rowspan="1", so it covered only the Morning row. In the Evening row the cells moved one column to the left:
+"Evening" appeared under Room, and the number 8 appeared under the Time heading.
+The number 8 belongs under the Visitors heading.
+
+=== Repairs ===
+1. In <thead>, Visitors was a <td>. I changed it to <th scope="col"> like Room and Time.
+2. I changed rowspan="1" to rowspan="2" on Lab A, so the room name appears once and covers Morning and Evening.
+   Now Morning and Evening are under Time, and 12 and 8 are under Visitors.
+3. In <tfoot>, I added colspan="2" to Total visitors so it spans the Room and Time columns,
+   and I changed the total from 23 to 25 under Visitors.
+
+=== How can you tell the repair worked? ===
+The number 8 belongs to Lab A in the Evening time slot, and it is the number of visitors.
+Total check: 12 (Lab A, Morning) + 8 (Lab A, Evening) + 5 (Lab B, Morning) = 25.

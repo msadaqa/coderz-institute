@@ -1,0 +1,92 @@
+Session 6 - Assignment 3 - Answers
+
+=== Checking that the CSS file loads ===
+Observed: When I opened the page as supplied, it had no styling. In DevTools -> Network, the request for
+style.css failed (file not found), and in Sources there was no stylesheet.
+Line that caused it (index.html):
+  <link rel="stylesheet" href="style.css">
+Effect: the file in the folder is named styles.css, so the browser looked for a file that does not exist
+and did not load any CSS rules.
+Fix: href="styles.css". After refreshing, styles.css appeared in Network with status 200 (OK)
+and its rules appeared in Styles.
+
+========================================================
+Bug 1 - h2 font size (unit test)
+========================================================
+Observed before the fix: In Computed, the h2 "CSS Foundations" had font-size 30px instead of 24px.
+For this reading: styles.css was loaded, the root (html) font size was 16px, and the card's font size was 20px.
+Line that caused it:
+  .course-card h2 { font-size: 1.5em; }
+Effect: em is relative to the font size of the parent element. The h2 is inside .course-card, which has
+font-size 20px, so 1.5em = 1.5 x 20px = 30px.
+Fix:
+  .course-card h2 { font-size: 1.5rem; }
+rem is relative to the root font size (html), so 1.5rem = 1.5 x 16px = 24px.
+Test after the fix: In Computed, the h2 font-size was 24px.
+For this reading: styles.css was loaded, the root font size was still 16px, and the card's font size was still 20px.
+
+Measurements:
+- Before (1.5em): 30px
+- After (1.5rem): 24px
+
+========================================================
+Bug 2 - --brand color on h1 and h2
+========================================================
+Observed before the fix: The h1 "coderz Institute" was tomato (red-orange), and the h2 was the body text
+color #24364b, not the brand color #12546c.
+Lines that caused it:
+  h1, h2 { color: var(--brnad); }
+  <h1 style="color: tomato;">coderz Institute</h1>
+Effect:
+- --brnad is a spelling mistake. The variable defined in :root is --brand, so var(--brnad) has no value.
+  The color declaration becomes invalid, and the h2 inherits the color of its parent instead (#24364b from body).
+- The inline style on the h1 has higher priority than any rule in the external CSS file, so even with the
+  correct variable, the h1 would stay tomato.
+Fix:
+  h1, h2 { color: var(--brand); }
+and I removed the inline style: <h1>coderz Institute</h1>
+Test after the fix: Both h1 and h2 were #12546c (rgb(18, 84, 108)).
+--brand test: I changed the value once in :root to a test color:
+  --brand: #c2185b;
+Both the h1 and the h2 changed to #c2185b (rgb(194, 24, 91)) together.
+Then I restored the intended color --brand: #12546c; before submission.
+
+========================================================
+Bug 3 - View schedule link color on hover
+========================================================
+Observed before the fix: When I moved the mouse over "View schedule", its color did not change.
+It stayed #12546c.
+Line that caused it:
+  .action :hover { color: #6845a8; }
+Effect: The space between .action and :hover makes it a descendant selector. It means
+"an element in hover state inside .action", not ".action itself in hover state". The link has no
+child elements, so the rule matched nothing.
+Fix:
+  .action:hover { color: #6845a8; }
+Test after the fix: I moved the mouse over the link and it turned #6845a8 (rgb(104, 69, 168)).
+When I moved the mouse away, it returned to #12546c.
+
+========================================================
+Other repairs (needed for the acceptance criteria)
+========================================================
+- course-card { background: #eef5ff; }  ->  .course-card { background: #eef5ff; }
+  The dot was missing, so the selector looked for an element named <course-card>, which does not exist.
+- .course-card p { background: #fff4d9; }  ->  .course-card > p { background: #fff4d9; }
+  The descendant selector also matched the day and price paragraphs inside .details.
+  The child combinator matches only the introductory paragraph, which is a direct child of the card.
+- .course-card h2::before had no content property, so nothing appeared. I added content: "• ";
+- .action:focus-visible { outline: 0 solid orange; }  ->  outline: 3px solid orange;
+  An outline with 0 width is not visible.
+I did not use !important.
+
+========================================================
+Checking the remaining acceptance criteria in the browser
+========================================================
+- The card has background #eef5ff (rgb(238, 245, 255)). "Registration closes on Sunday." is outside the card
+  and keeps the page background (white).
+- Only "Learn how to style your first course page." has background #fff4d9. "Day: Monday" and
+  "Price: 30 JD" have no background of their own (transparent).
+- A • appears before "CSS Foundations" from ::before. The HTML text of the h2 is still exactly "CSS Foundations".
+- View schedule with the mouse: it turns #6845a8 on hover, and clicking it takes the page to #schedule
+  (the address ends with #schedule).
+- View schedule with Tab: a 3px solid orange outline appears around the link.

@@ -1,0 +1,24 @@
+Session 6 - Assignment 1 - Answers
+
+=== Testing --brand ===
+I changed --brand in :root only (from #1d4ed8 to another color). I opened both pages:
+the <h1> on index.html, the <h1> on pages/courses.html, and both course names in the <h2> elements
+changed to the new color. Then I set it back to #1d4ed8.
+
+=== Testing data-status ===
+On the HTML Basics card I changed only data-status="open" to data-status="full" and the status text
+to «اكتمل العدد». Without editing the CSS, its status background turned gray like CSS Foundations.
+Then I set it back to data-status="open" and «التسجيل مفتوح».
+
+=== Stylesheet href from each page ===
+- index.html: href="styles.css"
+  index.html is in the same folder as styles.css (assiment1), so the file name is enough.
+- pages/courses.html: href="../styles.css"
+  courses.html is inside the pages folder, so "../" goes up one folder to assiment1, where styles.css is.
+
+=== Selector for a full course's status ===
+.course-card[data-status="full"] .status
+
+It matches the <span class="status"> element that is inside an <article class="course-card">
+whose data-status attribute is exactly "full". It does not match the <article> itself or the <p> description,
+so only the status gets the gray background. On the page now it matches the «اكتمل العدد» span in the CSS Foundations card.

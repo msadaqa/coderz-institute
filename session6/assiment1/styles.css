@@ -1,0 +1,20 @@
+:root {
+  --brand: #1d4ed8;
+}
+
+h1,
+.course-card h2 {
+  color: var(--brand);
+}
+
+.course-card {
+  background-color: #f5f5f5;
+}
+
+.course-card[data-status="open"] .status {
+  background-color: #ccf2d1;
+}
+
+.course-card[data-status="full"] .status {
+  background-color: #c4c4c4;
+}

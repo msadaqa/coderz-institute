@@ -1,0 +1,59 @@
+Session 6 - Assignment 2 - Answers
+
+=== 1. Inspect the course heading (Specificity) ===
+Prediction: the h1 will be purple.
+Observation: When the page opened, the heading "CSS Foundations" was purple. In DevTools -> Styles,
+the rule that sets its color is #course-title { color: purple; }. The .title (green) and h1 (navy)
+color declarations are crossed out.
+Explanation: All three rules match the same h1, so the browser compares specificity first.
+#course-title is an id selector (1,0,0), .title is a class selector (0,1,0), and h1 is a type selector (0,0,1).
+The id selector has the highest specificity, so purple wins. The h1 rule loses even though it comes last,
+because source order only decides between rules that have the same specificity.
+
+=== 2. Change the order of two rules (Source Order) ===
+I disabled the #course-title rule by commenting it out: /* #course-title { color: purple; } */
+
+a) .title { color: orange; } at the end of the file
+Prediction: orange.
+Observation: the heading was orange.
+Explanation: Without the id rule, the two .title rules have the same specificity (0,1,0) and both are
+higher than h1. When specificity is equal, the rule that comes later in the file wins, and orange was last.
+
+b) .title { color: orange; } moved immediately before the green rule
+Prediction: green.
+Observation: the heading was green.
+Explanation: The two .title rules still have the same specificity, but now green comes after orange,
+so green wins. h1 { color: navy; } is still last, but it loses because its specificity is lower.
+
+After the test I enabled the #course-title rule again, so the heading is purple again.
+I kept the orange rule in its last position (immediately before the green rule).
+
+=== 3. Trace the paragraph colors (Inheritance) ===
+Before the new rule (DevTools -> Computed):
+- "Learn how the browser chooses a style." : color rgb(55, 65, 81) (#374151), inherited from article.course-card.
+- "Next class: Monday" : color rgb(55, 65, 81) (#374151), inherited from article.course-card through div.details.
+Neither <p> has its own color rule, so both inherit the card's color.
+
+Rule I added:
+.course-card > p { color: teal; }
+
+Prediction: the introductory paragraph will be teal and the schedule paragraph will stay #374151.
+Observation after the rule:
+- "Learn how the browser chooses a style." : color rgb(0, 128, 128) (teal).
+- "Next class: Monday" : color rgb(55, 65, 81) (#374151), still inherited from the card.
+
+Why > and not a space:
+The child combinator (>) matches only a <p> that is a direct child of .course-card. The introductory
+paragraph is a direct child, but the schedule paragraph is inside div.details, so it is a grandchild and
+is not matched. With the descendant combinator (.course-card p), both paragraphs would match and both
+would turn teal, so the schedule paragraph would no longer inherit the card's color.
+
+=== Test the course link ===
+Rules I added:
+.course-card a:hover { color: crimson; }
+.course-card a:focus-visible { outline: 3px solid orange; }
+
+- Moving the pointer over "View topics": the link color changed to crimson.
+- Moving the pointer away: the link returned to its normal link color.
+- Using Tab to reach the link: an orange outline appeared around the link, so it is clear which element
+  has keyboard focus. The color did not change to crimson, because :hover only applies to the mouse pointer.
